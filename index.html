@@ -1,0 +1,40 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>standard-catalogue</title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://vuejs.org/js/vue.js"></script>
+
+<style>
+body {
+  font-family: arial;
+}
+th {
+  text-align: left;
+}
+</style>
+
+<div id="app">
+  {{ items.length }} items found.
+  <table v-if="items.length > 0">
+    <thead>
+      <tr>
+        <th colspan="4">Downloads</th>
+        <th>Author</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="item of items">
+        <td><a :href="item.epub">epub<a></td>
+        <td><a :href="item.azw3">azw3<a></td>
+        <td><a :href="item.kepub">kepub<a></td>
+        <td><a :href="item.epub3">epub3<a></td>
+        <td>{{ item.author }}</td>
+        <td>{{ item.title }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript" src="app.js"></script>
+
