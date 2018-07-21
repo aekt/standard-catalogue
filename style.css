@@ -2,8 +2,21 @@ body {
   font-family: arial;
 }
 
-th {
+table {
+  border-spacing: 0;
+}
+
+thead tr {
+  background-color: #c0c0c0;
   text-align: left;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #c6deff;
+}
+
+th, td {
+  padding: 5px;
 }
 
 #progress {
