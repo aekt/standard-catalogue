@@ -7,9 +7,7 @@ th {
 }
 
 #progress {
-  background-color: tomato;
-  height: 1px;
   position: fixed;
-  left: 0;
-  top: 0;
+  top: 5px;
+  right: 5px;
 }

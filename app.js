@@ -9,13 +9,8 @@ let vm = new Vue({
   created: function() {
     let page = '/ebooks/?page=';
     let maxPage = 16;
-    for (let i = 0; i < maxPage; i++) {
+    for (let i = 1; i <= maxPage; i++) {
       this.scrap(page + i, this.handleList, this.extractList);
-    }
-  },
-  computed: {
-    progress: function() {
-      return this.total ? 100 * this.items.length / this.total : 0;
     }
   },
   methods: {
@@ -35,14 +30,21 @@ let vm = new Vue({
       return list;
     },
     handleList: function(list) {
-      for (let book of list) {
-        this.scrap(book, this.handleItem, this.extractItem);
+      for (let file of list) {
+        this.scrap(file, this.handleItem, this.extractItem);
         this.total++;
       }
     },
     extractItem: function(text) {
       let html = $.parseHTML(text);
-      let article = html[57].children[0].children;
+      html.reverse();
+      let article = null;
+      for (let node of html) {
+        if (node.localName === 'main') {
+          article = node.children[0].children;
+          break;
+        }
+      }
       let header = article[0].children[0].children;
       let ol = article[3].children[2].children;
       let item = {

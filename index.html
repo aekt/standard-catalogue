@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 
 <div id="app">
-  <div id="progress" :style="{ width: progress + '%' }"></div>
+  <div id="progress">{{ this.items.length }}/{{ this.total }}</div>
   <table v-if="items.length > 0">
     <thead>
       <tr>
@@ -26,7 +26,7 @@
       </tr>
     </tbody>
   </table>
-  <span v-else>Loading ...</span>
+  <span v-else>Loading...</span>
 </div>
 
 <script type="text/javascript" src="app.js"></script>
