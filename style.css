@@ -1,0 +1,15 @@
+body {
+  font-family: arial;
+}
+
+th {
+  text-align: left;
+}
+
+#progress {
+  background-color: tomato;
+  height: 1px;
+  position: fixed;
+  left: 0;
+  top: 0;
+}

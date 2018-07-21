@@ -4,12 +4,18 @@ let vm = new Vue({
   el: '#app',
   data: {
     items: [],
+    total: 0,
   },
   created: function() {
     let page = '/ebooks/?page=';
     let maxPage = 16;
     for (let i = 0; i < maxPage; i++) {
       this.scrap(page + i, this.handleList, this.extractList);
+    }
+  },
+  computed: {
+    progress: function() {
+      return this.total ? 100 * this.items.length / this.total : 0;
     }
   },
   methods: {
@@ -31,6 +37,7 @@ let vm = new Vue({
     handleList: function(list) {
       for (let book of list) {
         this.scrap(book, this.handleItem, this.extractItem);
+        this.total++;
       }
     },
     extractItem: function(text) {
