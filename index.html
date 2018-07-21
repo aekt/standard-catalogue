@@ -6,11 +6,10 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 
 <div id="app">
-  <div id="progress">{{ this.items.length }}/{{ this.total }}</div>
   <table v-if="items.length > 0">
     <thead>
       <tr>
-        <th colspan="4">Downloads</th>
+        <th colspan="4">({{ this.items.length }}/{{ this.total }})</th>
         <th @click="sortByAuthor">Author</th>
         <th @click="sortByTitle">Title</th>
       </tr>

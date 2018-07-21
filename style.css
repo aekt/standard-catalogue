@@ -18,9 +18,3 @@ tbody tr:nth-child(odd) {
 th, td {
   padding: 5px;
 }
-
-#progress {
-  position: fixed;
-  top: 5px;
-  right: 5px;
-}
