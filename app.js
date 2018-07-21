@@ -62,5 +62,11 @@ let vm = new Vue({
     handleItem: function(item) {
       this.items.push(item);
     },
+    sortByTitle: function() {
+      this.items.sort((a, b) => a.title < b.title ? -1 : 1);
+    },
+    sortByAuthor: function() {
+      this.items.sort((a, b) => a.author < b.author ? -1 : 1);
+    },
   },
 });
