@@ -18,3 +18,7 @@ tbody tr:nth-child(odd) {
 th, td {
   padding: 5px;
 }
+
+td {
+  border-top: 1px solid black;
+}
