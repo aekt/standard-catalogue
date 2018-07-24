@@ -70,11 +70,17 @@ window.onload = () => {
       handleItem: function(item) {
         this.items.push(item);
       },
+      compare: function(a, b) {
+        return a < b ? -1 : 1;
+      },
       sortByTitle: function() {
-        this.items.sort((a, b) => a.title < b.title ? -1 : 1);
+        this.items.sort((a, b) => this.compare(a.title, b.title));
       },
       sortByAuthor: function() {
-        this.items.sort((a, b) => a.author < b.author ? -1 : 1);
+        this.items.sort((a, b) => {
+          let lastName = (s => s.author.split(' ').slice(-1));
+          return this.compare(lastName(a), lastName(b));
+        });
       },
     },
   });
