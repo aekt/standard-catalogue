@@ -1,6 +1,7 @@
 'use strict';
 window.onload = () => {
   let url = 'https://standardebooks.org';
+  let getPage = (i => '/ebooks/?page=' + i);
   let vm = new Vue({
     el: '#app',
     data: {
@@ -8,11 +9,7 @@ window.onload = () => {
       total: 0,
     },
     created: function() {
-      let page = '/ebooks/?page=';
-      let maxPage = 16;
-      for (let i = 1; i <= maxPage; i++) {
-        this.scrap(page + i, this.handleList, this.extractList);
-      }
+      this.scrap(getPage(1), this.handleMaxPage, this.extractMaxPage);
     },
     methods: {
       scrap: function(file, handle, extract) {
@@ -20,8 +17,18 @@ window.onload = () => {
         .then(resp => resp.text())
         .then(text => handle(extract(text)));
       },
+      extractMaxPage: function(text) {
+        let html = $.parseHTML(text);
+        let ol = html[43].children[0].children[3].children[1].children;
+        return ol.length;
+      },
+      handleMaxPage: function(maxPage) {
+        for (let i = 1; i <= maxPage; i++) {
+          this.scrap(getPage(i), this.handleList, this.extractList);
+        }
+      },
       extractList: function(text) {
-        let html = $.parseHTML(text)
+        let html = $.parseHTML(text);
         let ol = html[43].children[0].children[2].children;
         let list = [];
         for (let li of ol) {
