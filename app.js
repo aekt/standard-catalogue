@@ -68,7 +68,7 @@ window.onload = () => {
         return item;
       },
       handleItem: function(item) {
-        this.items.push(item);
+        this.items.unshift(item);
       },
       compare: function(a, b) {
         return a < b ? -1 : 1;
